@@ -1,2 +1,2 @@
-# Funcion-analitica
-Ejercicio del paracaidista
+# Metodos Numericos
+Ejercicios y talleres echos en clase
