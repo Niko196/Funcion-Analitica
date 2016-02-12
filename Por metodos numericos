@@ -14,18 +14,17 @@ while ta<=102:
         vmn=vmn+(g-(c/m*vmn))*(tmn-(tmn-2))
         tiemn.append(ta)
         tmn+=2
-        cont2+=1
     else:
         print ("%d\t|\t%f\t|\t--.---" %(ta,va))
     vela.append(va)
     tiea.append(ta)
     ta+=1
-    cont1+=1
-plt.plot(tiea, vela, 'bo')
-plt.plot(tiemn, velmn, 'k')
+plt.plot(tiemn, velmn, 'bo', label='Velocidad Met. Num.')
+plt.plot(tiea, vela, 'k', label='Velocidad Analitica')
 plt.title("Velocidad del paracaidista")
+plt.legend(loc=2)
 plt.xlabel("Tiempo")
 plt.xlim(0, 110)
 plt.ylabel("Velocidad")
-plt.ylim(0, 60)
+plt.ylim(0, 70)
 plt.show()
