@@ -1,0 +1,31 @@
+#Ejercicio del paracaidista
+##Funcion analitica y metodos numericos para resolver el ejercicio
+import matplotlib.pyplot as plt
+g, m, c, e = 9.8, 68.1, 12.5, 2.71
+ta, tmn, va, vmn = 0, 2 , 0, 0
+vela, tiea, velmn, tiemn= [], [], [], []
+print ("t\t|\tv(t)a\t\t|\tv(t)mn")
+print ("-------------------------------------------------")
+while ta<=102:
+    va=(g*m/c)*(1-e**(-(c/m)*ta))
+    if ta%2==0:
+        velmn.append(vmn)
+        print ("%d\t|\t%f\t|\t%f" %(ta,va,vmn))
+        vmn=vmn+(g-(c/m*vmn))*(tmn-(tmn-2))
+        tiemn.append(ta)
+        tmn+=2
+        cont2+=1
+    else:
+        print ("%d\t|\t%f\t|\t--.---" %(ta,va))
+    vela.append(va)
+    tiea.append(ta)
+    ta+=1
+    cont1+=1
+plt.plot(tiea, vela, 'bo')
+plt.plot(tiemn, velmn, 'k')
+plt.title("Velocidad del paracaidista")
+plt.xlabel("Tiempo")
+plt.xlim(0, 110)
+plt.ylabel("Velocidad")
+plt.ylim(0, 60)
+plt.show()
