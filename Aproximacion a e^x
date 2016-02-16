@@ -1,0 +1,25 @@
+def factorial(x):
+    cont, res = 1 , 1
+    while cont<=x:
+        res*=cont
+        cont+=1
+    return res
+
+es = (0.5*(10**(2-3)))
+e = 2.718
+x = 1.0/2.0
+term, expo, ex, exa, ev, et, ea = 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+print ("Termino\t\t|\te^x aprox.\t|\tEt\t\t|\tEa")
+print ("------------------------------------------------------------"
+      +"-------------------------")
+while True:
+    ex += (x**expo)/factorial(expo)
+    ev = (e**x)-ex
+    et = ev/ex*100
+    ea = (ex-exa)/ex*100
+    exa = ex
+    print ("%d\t\t|\t%f\t|\t%f\t|\t%f" %(term, ex, et, ea))
+    expo+=1
+    term+=1
+    if ea<es :
+        break
