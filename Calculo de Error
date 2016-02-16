@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+g, m, c, e, = 9.8, 68.1, 12.5, 2.71
+et, e3t, ea = 0, 0, 0
+t, va, vmn, vmna=2 , 0, 0, 0
+vela, tiea, velmn, tiemn= [], [], [], []
+print ("t\t|\tv(t)a\t\t|\tv(t)mn\t\t|\tEt\t\t|\t3t\t\t|\tEa")
+print ("-----------------------------------------------------------------------"
+       +"------------------------------------------------")
+while t<=102:
+    va=(g*m/c)*(1-e**(-(c/m)*t))
+    vmn=vmn+(g-(c/m*vmn))*(t-(t-2))
+    et=(va-vmn)*-1
+    e3t=et/vmn*100
+    ea=(vmn-vmna)/vmn*100
+    vmna=vmn
+    print ("%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\t|\t%f" %(t, va, vmn, et, e3t, ea))
+    velmn.append(vmn)
+    tiemn.append(t)
+    vela.append(va)
+    tiea.append(t)
+    t+=2
+plt.plot(tiemn, velmn, 'bo', label='Velocidad Met. Num.')
+plt.plot(tiea, vela, 'k', label='Velocidad Analitica')
+plt.title("Velocidad del paracaidista")
+plt.legend(loc=2)
+plt.xlabel("Tiempo")
+plt.xlim(0, 110)
+plt.ylabel("Velocidad")
+plt.ylim(0, 70)
+plt.show()
