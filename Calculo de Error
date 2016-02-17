@@ -1,30 +1,39 @@
 import matplotlib.pyplot as plt
 g, m, c, e, = 9.8, 68.1, 12.5, 2.71
-et, e3t, ea = 0, 0, 0
+et, e3t, ea = [], [], []
+etx, e3tx, eax = 0, 0, 0
 t, va, vmn, vmna=2 , 0, 0, 0
-vela, tiea, velmn, tiemn= [], [], [], []
+vela, tiem, velmn = [], [], []
 print ("t\t|\tv(t)a\t\t|\tv(t)mn\t\t|\tEt\t\t|\t3t\t\t|\tEa")
 print ("-----------------------------------------------------------------------"
        +"------------------------------------------------")
 while t<=102:
     va=(g*m/c)*(1-e**(-(c/m)*t))
     vmn=vmn+(g-(c/m*vmn))*(t-(t-2))
-    et=(va-vmn)*-1
-    e3t=et/vmn*100
-    ea=(vmn-vmna)/vmn*100
+    etx=(va-vmn)*-1
+    e3tx=etx/vmn*100
+    eax=(vmn-vmna)/vmn*100
     vmna=vmn
-    print ("%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\t|\t%f" %(t, va, vmn, et, e3t, ea))
+    print ("%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\t|\t%f" %(t, va, vmn, etx, e3tx, eax))
     velmn.append(vmn)
-    tiemn.append(t)
+    tiem.append(t)
     vela.append(va)
-    tiea.append(t)
+    et.append(etx)
+    e3t.append(e3tx)
+    ea.append(eax)
     t+=2
-plt.plot(tiemn, velmn, 'bo', label='Velocidad Met. Num.')
-plt.plot(tiea, vela, 'k', label='Velocidad Analitica')
+plt.plot(tiem, velmn, 'ro', label='Velocidad Met. Num.')
+plt.plot(tiem, vela, 'k', label='Velocidad Analitica')
+plt.plot(tiem, et, 'r', label='Error verdadero')
+plt.plot(tiem, e3t, 'b', label='Error relat. % verdadero')
+plt.plot(tiem, ea, 'g', label='Error relat. % aprox.')
 plt.title("Velocidad del paracaidista")
 plt.legend(loc=2)
 plt.xlabel("Tiempo")
 plt.xlim(0, 110)
+plt.ylabel("Velocidad")
+plt.ylim(0, 160)
+plt.show()
 plt.ylabel("Velocidad")
 plt.ylim(0, 70)
 plt.show()
