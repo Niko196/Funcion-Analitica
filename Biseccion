@@ -1,0 +1,53 @@
+import matplotlib.pyplot as plt
+
+def funcion(c) :
+    g, m, t, v, e  = 9.8, 68.1,  10.0, 40.0, 2.718
+    return (g*m/c*(1-e**-(c/m*t))-v)
+
+def cifras(num):
+    num *=1000
+    num = int(num)+0.0
+    num /= 1000
+    return num
+    
+xl, xu, xr = 2.0, 20.0, 0.0
+rep = 0
+fx, tfx = [], [2,4,6,8,10,12,14,16,18,20, 22]
+x, t = [], [xl, xu]
+for i in tfx:
+    if (i!=0):
+        fx.append(cifras(funcion(i)))
+for i in t:
+    x.append(cifras(funcion(i)))
+
+print ("Itera.\t|\tXu\t\t|\tXl\t\t|\tXr\t\t|\tF(c)")
+print ("----------------------------------------------------------"
+      +"-----------------------------------------")
+while True:
+    if (xr!=0):
+        print ("%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f" %(rep, xu, xl, xr, funcion(xr)))
+    if (funcion(xl)*funcion(xu)<0):
+        xr = (xl+xu)/2
+        t.append(cifras(xr))
+        x.append(cifras(funcion(xr)))
+        if (funcion(xl)*funcion(xr)<0) :
+            xu = xr
+        if (funcion(xl)*funcion(xr)>0):
+            xl = xr
+        if (funcion(xl)*funcion(xr)==0):
+            print ("La raiz esta en t = %f" %(cifras(xr)))
+            break
+        rep += 1
+    else :
+        break
+        
+plt.plot(range(0,24), [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+plt.plot(tfx, fx, label='F(x)')
+plt.plot(t, x, 'bo', label='Xr')
+plt.title("Velocidad del paracaidista")
+plt.legend(loc="upper left")
+plt.xlabel("Tiempo")
+plt.xlim(0, 22)
+plt.ylabel("Velocidad")
+plt.ylim(-12, 30)
+plt.show()
