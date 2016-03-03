@@ -2,12 +2,6 @@ def funcion(c):
     g, m, e, v, t = 9.8, 68.1, 2.718, 40, 10
     return ((g*m/c)*(1-e**(-(c/m)*t))-v)
 
-def cifras(num):
-    num *= 1000
-    num = int(num)+0.0
-    num /= 1000
-    return num
-
 xl, xu, xr, ite =  12, 20, 0, 0
 print ("Iter.\t|\tXl\t\t|\tXr\t\t|\tXu\t\t|\tF(xr)")
 print ("-------------------------------------------"
